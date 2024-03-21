@@ -30,9 +30,10 @@ const ListItem = (props: Product) => {
 
   async function edit(code: string) {
     const description = prompt(`Digite a nova descrição: `);
-    const value = prompt(`Digite o novo valor: `);
+    const valueInput = prompt(`Digite o novo valor: `);
 
-    const valueFormated = Number(value);
+    const valueReplaced = valueInput?.replace(',', '.');
+    const valueFormated = Number(valueReplaced);
 
     const payload: UpdateProduct = {
       code,

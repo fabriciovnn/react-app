@@ -28,9 +28,12 @@ function Modal(props: ModalProps) {
   async function handleSubmit(event: React.FormEvent<HTMLFormElement>) {
     event.preventDefault();
 
+    const valueInput = event.currentTarget.valueProduct.value;
+    const valueFormated = valueInput.replace(',', '.');
+
     const payload = {
       description: event.currentTarget.description.value,
-      value: Number(event.currentTarget.valueProduct.value),
+      value: Number(valueFormated),
     };
 
     const response = await createProduct(payload);
@@ -80,7 +83,7 @@ function Modal(props: ModalProps) {
                 id="valueProduct"
                 label="Valor"
                 variant="outlined"
-                type="number"
+                type="text"
               />
             </Grid>
             <Grid item xs={12} display={'flex'} justifyContent={'end'} gap={1}>
